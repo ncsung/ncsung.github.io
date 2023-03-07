@@ -1,0 +1,431 @@
+@font-face{
+    src:url(../public_html/assets/fonts/Atami-Regular.otf);
+    font-family: atami;
+}
+:root {
+    /* Usage of the :root class and CSS Variables was covered on Mozilla docs
+    https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties */
+    --primary-black: #050206;
+    --secondary-black: #0C0C11;
+    --primary-gray: #3B3B3B;
+    --accent-colour: #9A8174;
+    --white-colour: #FEFEFE;
+}
+
+* {
+    /* Set default font and box-sizing across the site */
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--white-colour);
+    margin: 0;
+}
+
+h1, h4{
+    font-family:  'atami' ,Arial, Helvetica, sans-serif;
+    color: var(--white-colour);
+}
+
+
+p{
+    font-family: 'Inter',Arial, Helvetica, sans-serif;
+}
+
+.accent-colour{
+    color: var(--accent-colour);
+}
+
+.white-colour{
+    color: var(--white-colour);
+}
+
+.coloured-header {
+    background-color: var(--accent-colour);
+}
+
+.black-bg{
+    background-color: var(--primary-black);
+}
+
+.secondary-black-bg{
+    background-color: var(--secondary-black);
+}
+
+
+/* Help with wrapping page came from Josh W Comeau's blog
+https://www.joshwcomeau.com/css/full-bleed/*/
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr min(65em, calc(100% - 2em)) 1fr;
+    grid-column-gap: 1em;
+}
+.wrapper > * {
+    grid-column: 2;
+}
+
+.bleed {
+    width: 100%;
+    grid-column: 1 / 4;
+}
+
+header{
+    padding-top: 1rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform-style:preserve-3d;
+    z-index: -1;
+    
+}
+
+nav{
+    position: sticky;
+    top: 0;
+    margin: 0;
+    background: var(--primary-black);
+    z-index: 1;
+}
+
+nav ul{
+    list-style: none;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    margin: 0; 
+    padding: 1em 0 0;
+    margin-bottom: 0.5em;
+    
+}
+
+nav li {
+    align-self: center;
+    margin-bottom: 1rem;
+ 
+}
+
+nav a:hover{
+    color: var(--primary-black);
+}
+
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .1s;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--white-colour);
+    position:relative;
+    z-index: 1;
+    width:100%;
+    padding: 1em;
+  }
+  
+nav ul li a:after{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 0px;
+    content: '.';
+    color: transparent;
+    background: var(--accent-colour);
+    visibility: none;
+    opacity: 0;
+    z-index: -1;
+}
+
+nav ul li a:hover:after {
+    opacity: 1;
+    height: 100%;
+  }
+
+.image{
+    width: 100%;
+    height: auto;
+}
+.profile-img{
+    max-width: 367px;
+    align-self: end;
+}
+.gif{
+    width: 50%;
+    height: auto;
+}
+
+
+
+.index-bannner{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.two-col{
+    height: 90vh;
+    display: grid;
+    margin-bottom: 2rem; 
+    align-items: center;
+}
+
+
+.back, .front{
+    position: absolute;
+    z-index: -1;
+}
+
+.banner-text{
+    align-self: start;
+    z-index: -1;
+}
+
+.project-banner{
+    text-align: center;
+    padding-top: 6em;
+    padding-bottom: 5em;
+}
+
+.three-col{
+    display: grid;  
+    gap: 1.5em;
+    margin-top: 3rem;
+}
+
+.index-project-section{
+    padding-top: 3rem;
+    background-color: var(--secondary-black);
+}
+
+.project-card{
+    display: grid; 
+    grid-template-rows: min-content  1fr min-content ;
+    margin: 0;
+    padding: 4em 1em 6em;
+    justify-items: center;
+    align-items: center;
+    text-decoration: none;
+    height: 90%;
+
+}
+
+.project-card p, a{
+    text-decoration: none;
+    transition: 0.20s;
+  }
+
+.project-card p, a:hover{
+  opacity: 90%;
+  text-decoration: none;
+  transform: translate(0, -5px);
+
+}
+
+.project-card a:hover{
+    box-shadow: 0px 4px 22px 7px rgba(0, 0, 0, 0.25);
+}
+
+.project-section{
+    display: grid;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.project-intro ul{
+    padding:0;
+    list-style: none;
+}
+
+.project-section img{
+    justify-self: center;
+}
+
+.image-holder{
+    display: grid;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.juggle-gif{
+    align-self: center;
+}
+
+
+/* Css only carousel found from this tutorial https://css-tricks.com/css-only-carousel/ */
+
+.slider{
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.slides > img{
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 300px;
+    height: 300px;
+    margin-right: 50px;
+    border-radius: 10px;
+    background: #eee;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+  }
+
+.img-slides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+.img-slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .img-slides::-webkit-scrollbar-thumb {
+    background: var(--primary-gray);
+    border-radius: 10px;
+  }
+  .img-slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .juggle-slides img{
+    width: 100%;
+    height: auto;
+  }
+
+  .pav-grid{
+      display: grid;
+  }
+
+.prototype-link a{
+    font-family: atami;
+}
+
+.prototype-link a:hover{
+    color: var(--accent-colour);
+}
+
+.prototype-link a:active{
+    color: var(--primary-gray);
+}
+
+footer{
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-content: end;
+    padding-top:1em;
+}
+
+.footer-title{
+    color: var(--accent-colour);
+    font: atami;
+}
+
+footer a{
+    text-align: none;
+    color: var(--white-colour);
+}
+
+footer a:hover{
+    color: var(--accent-colour);
+}
+
+
+footer ul{
+    list-style-type: none;
+    padding:0;
+}
+
+footer li{
+    padding-bottom: 2em;
+    text-align: center;
+}
+
+@media (min-width:50rem){
+
+    .two-col{
+        grid-template-columns: 1fr 2fr;
+    }
+    .profile-img{
+        align-self: center;
+    }
+    .banner-text{
+        align-self: center;
+    }
+    .three-col{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .project-section{
+        grid-template-columns: 1fr 3fr;
+        gap: 1.5rem;
+    }
+    .project-disc{
+        margin-top: 3em;
+    }
+    .project-section h3{
+        position: relative;
+        grid-column-start: 1;
+        margin: 0;
+        
+    }
+    .project-section p{
+        grid-column-start: 1;
+        margin-top: 0;
+    }
+    .image-holder{
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-between;
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+    .image-holder-three{
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: space-between;
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+    .pav-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+    .juggle-slides {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+    .juggle-slides img{
+        width: 100%;
+        height: auto;
+      }
+    
+}
+
+@media (min-width:33rem){
+    nav ul{
+        grid-template-columns: 60% 20% 20%;
+        margin: auto 0;
+    }
+}
